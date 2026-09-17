@@ -1,0 +1,48 @@
+H1{
+    color: white;
+    background-color: black;
+    font-family: helvetica;
+    font-size: 40px;
+    font-weight: 500;
+    }
+
+H3{
+    color: white;
+    font-size: helvetica;
+    font-size: 30px;
+    text-align: center;
+}
+
+H4{
+    color: white;
+}
+
+P{
+    color: white;
+    font-size: 19px;
+    text-align: center;
+}
+
+.gallery-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1642 / 1704; 
+  object-fit: contain;
+  border-radius: 12px;
+}
