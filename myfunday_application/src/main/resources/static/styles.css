@@ -1,0 +1,16 @@
+h1{
+ color: antiquewhite  
+}
+
+body{
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #ae0bf6, #a80df1, #a30eec, #9d0fe6, #9810e1);
+}
+
+div {
+    margin: 10px;
+}
+
+label {
+    color: white;
+}
