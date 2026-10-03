@@ -1,16 +1,32 @@
-h1{
- color: antiquewhite  
+body h1{
+    color: white;
+    padding: 20px;
 }
 
 body{
     min-height: 100vh;
-    background-image: linear-gradient(to bottom, #ae0bf6, #a80df1, #a30eec, #9d0fe6, #9810e1);
-}
-
-div {
-    margin: 10px;
+    background-image: linear-gradient(to bottom, #ae0bf6, #9e0ae2, #8e09ce, #7f08bb, #7006a8);
 }
 
 label {
     color: white;
+}
+
+p {
+    color: white;
+}
+
+div {
+    margin-top: 10px;
+}
+
+#budgetOut {
+    color: white;
+}
+
+
+.card-img-top {
+    height: 200px;        /* одинаковая высота для всех */
+    object-fit: cover;    /* обрезает лишнее, не искажая пропорции */
+    width: 100%;
 }
