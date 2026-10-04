@@ -5,24 +5,25 @@ H1{
     background-color: black;
 	border-radius: 0.4rem;
     font-family: helvetica;
-    font-size: 2.5rem;
+    font-size: clamp(1.6rem, 5vw, 2.5rem);
     font-weight: 500;
     }
 
 H3{
     color: white;
     font-size: helvetica;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 2vw, 2rem);
     text-align: center;
 }
 
 H4{
     color: white;
+	font-size: clamp(0.7rem, 1vw, 1rem);
 }
 
 P{
 	color: white;
-	font-size: 1.2rem;
+	font-size: clamp(0.75rem, 2vw, 1.2rem);
 	text-align: justify;
 	text-align-last: center;
 	padding: 0 clamp(1rem, 8vw, 8rem);
@@ -33,13 +34,13 @@ P{
   justify-content: center;
   align-items: center;
   min-height: max(100vh, auto); 
-  padding: 2rem 1.2rem;
+  padding: clamp(0.1rem, 0.7vw, 2rem) clamp(0.1rem, 0.7vw, 1.2rem);
 }
 
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.2rem;
+  gap: clamp(0.2rem, 1vw, 1.2rem);
   width: 100%;
   max-width: 75rem;
 }
@@ -60,7 +61,7 @@ P{
 
 .gallery2 img {
 	width: auto;
-	height: 6.25rem;
+	height: clamp(3rem, 5vw, 6.26rem);
 	align-content: center;
 }
 
@@ -69,16 +70,16 @@ P{
 }
 
 .git img{
-	width: 3.75rem;
+	width: clamp(1.8rem, 3vw, 3.75rem);
 	height: auto;
 }
 
 .custom-button {
 	display: inline-block;
 	vertical-align: middle;
-	padding: 0.75rem 1.5rem;  
+	padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 1vw, 1.5rem);
 	font-family: Arial, sans-serif;
-	font-size: 1rem;
+	font-size: clamp(0.3rem, 2vw, 1rem);
 	font-weight: bold;
 	color: white;          
 	background-color: #0d6efd;
