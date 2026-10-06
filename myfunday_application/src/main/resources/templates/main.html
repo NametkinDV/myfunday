@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>MyFunDay</title>
-        <link rel = "stylesheet" type = "text/css" href = "styles.css">
+        <link rel = "stylesheet" type = "text/css" href = "../static/styles.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
             rel="stylesheet" 
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
@@ -26,8 +26,10 @@
                         <select name="type">
                             <option value= "any">Любой</option>
                             <option value= "active">Активный</option>
-                            <option value= "passive">Пассивный</option>
+                            <option value= "passive">Спокойный</option>
                         </select>
+
+                        <!-- по районам или указать местоположение на карте -->
                         <label for="region">Район: </label> 
                         <select name="region">
                             <option value= "any">Любой</option>
@@ -40,9 +42,12 @@
                             <option value= "Sormovsky">Сормовский</option>
                             <option value= "Leninsky">Ленинский</option>
                         </select>
+
+                        <!-- день недели -->
     
                         <div>
                             <label for="budget" class="form-label">Средний бюджет: </label>
+                            <!-- покороче -->
                             <input type="range" class="form-range" min="0" max="5000" value="0" step = "500" name = "budget" id="budgetIn">
                             <output for="budget" id="budgetOut" aria-hidden="true"></output>
                             <script>
@@ -136,7 +141,7 @@
             <div class="row">
                 <div class="col">
                     <div class="card h-100" style="width: 18rem;">
-                        <img src="img/Switzerland.jpg" class="card-img-top" alt='Парк "Швейцария"'>
+                        <img src="../static/img/Switzerland.jpg" class="card-img-top" alt='Парк "Швейцария"'>
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Парк "Швейцария"</h5>
                             <p class="card-text" text style = "color: black">Крупный парк на высоком берегу Оки в Нижнем Новгороде. Одно из самых популярных мест отдыха горожан и туристов.</p>
@@ -147,7 +152,7 @@
 
                 <div class="col">
                     <div class="card h-100" style="width: 18rem;">
-                        <img src="img/fuku_ramen.jpg" class="card-img-top" alt='Фуку Рамен'>
+                        <img src="../static/img/fuku_ramen.jpg" class="card-img-top" alt='Фуку Рамен'>
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Ресторан "Фуку Рамен"</h5>
                             <p class="card-text" text style = "color: black">Кафе «Фуку Рамен» специализируется на блюдах азиатской кухни, особенно на рамене.</p>
@@ -158,7 +163,7 @@
 
                 <div class="col">
                     <div class="card h-100" style="width: 18rem;">
-                        <img src="img/karting.jpg" class="card-img-top" alt='Olymp Karting'>
+                        <img src="../static/img/karting.jpg" class="card-img-top" alt='Olymp Karting'>
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Olymp Karting</h5>
                             <p class="card-text" text style = "color: black">В картинг-клубе Olymp Karting можно не только покататься на картах, но и поиграть в аэрохоккей, а также воспользоваться игровыми приставками Xbox.</p>
