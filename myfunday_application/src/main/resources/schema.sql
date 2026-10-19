@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3
 -- Dumped by pg_dump version 15.3
 
--- Started on 2026-10-01 17:50:36
+-- Started on 2026-10-19 12:45:07
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,25 +18,50 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-ALTER TABLE ONLY public.places DROP CONSTRAINT places_type_of_recreation_fkey;
-ALTER TABLE ONLY public.places DROP CONSTRAINT places_type_of_place_fkey;
-ALTER TABLE ONLY public.opening_hours DROP CONSTRAINT opening_hours_place_id_fkey;
-ALTER TABLE ONLY public.locations DROP CONSTRAINT locations_place_id_fkey;
-ALTER TABLE ONLY public.locations DROP CONSTRAINT locations_district_id_fkey;
-ALTER TABLE ONLY public.types_of_recreation DROP CONSTRAINT types_of_recreation_pkey;
-ALTER TABLE ONLY public.types_of_place DROP CONSTRAINT types_of_place_pkey;
-ALTER TABLE ONLY public.places DROP CONSTRAINT places_pkey;
-ALTER TABLE ONLY public.opening_hours DROP CONSTRAINT opening_hours_pkey;
-ALTER TABLE ONLY public.districts DROP CONSTRAINT districts_pkey;
-DROP TABLE public.types_of_recreation;
-DROP TABLE public.types_of_place;
-DROP TABLE public.places;
-DROP TABLE public.opening_hours;
-DROP TABLE public.locations;
-DROP TABLE public.districts;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- TOC entry 226 (class 1259 OID 73945)
+-- Name: attributes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.attributes (
+    id integer NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.attributes OWNER TO postgres;
+
+--
+-- TOC entry 227 (class 1259 OID 73974)
+-- Name: attributes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.attributes ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.attributes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 225 (class 1259 OID 73942)
+-- Name: attributes_of_places; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.attributes_of_places (
+    place_id integer NOT NULL,
+    attribute_id integer NOT NULL
+);
+
+
+ALTER TABLE public.attributes_of_places OWNER TO postgres;
 
 --
 -- TOC entry 216 (class 1259 OID 73856)
@@ -125,7 +150,9 @@ CREATE TABLE public.places (
     type_of_place integer,
     type_of_recreation integer,
     budget integer DEFAULT 0,
-    communication text
+    communication text,
+    description text,
+    img text
 );
 
 
@@ -203,7 +230,25 @@ ALTER TABLE public.types_of_recreation ALTER COLUMN id ADD GENERATED ALWAYS AS I
 
 
 --
--- TOC entry 3203 (class 2606 OID 73862)
+-- TOC entry 3222 (class 2606 OID 73953)
+-- Name: attributes_of_places attributes_of_places_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.attributes_of_places
+    ADD CONSTRAINT attributes_of_places_pkey PRIMARY KEY (place_id, attribute_id);
+
+
+--
+-- TOC entry 3224 (class 2606 OID 73951)
+-- Name: attributes attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.attributes
+    ADD CONSTRAINT attributes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3212 (class 2606 OID 73862)
 -- Name: districts districts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -212,7 +257,16 @@ ALTER TABLE ONLY public.districts
 
 
 --
--- TOC entry 3205 (class 2606 OID 73876)
+-- TOC entry 3216 (class 2606 OID 73977)
+-- Name: locations locations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.locations
+    ADD CONSTRAINT locations_pkey PRIMARY KEY (place_id);
+
+
+--
+-- TOC entry 3214 (class 2606 OID 73876)
 -- Name: opening_hours opening_hours_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -221,7 +275,7 @@ ALTER TABLE ONLY public.opening_hours
 
 
 --
--- TOC entry 3201 (class 2606 OID 73848)
+-- TOC entry 3210 (class 2606 OID 73848)
 -- Name: places places_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -230,7 +284,7 @@ ALTER TABLE ONLY public.places
 
 
 --
--- TOC entry 3207 (class 2606 OID 73907)
+-- TOC entry 3218 (class 2606 OID 73907)
 -- Name: types_of_place types_of_place_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -239,7 +293,7 @@ ALTER TABLE ONLY public.types_of_place
 
 
 --
--- TOC entry 3209 (class 2606 OID 73914)
+-- TOC entry 3220 (class 2606 OID 73914)
 -- Name: types_of_recreation types_of_recreation_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -248,7 +302,25 @@ ALTER TABLE ONLY public.types_of_recreation
 
 
 --
--- TOC entry 3213 (class 2606 OID 73885)
+-- TOC entry 3230 (class 2606 OID 73959)
+-- Name: attributes_of_places attributes_of_places_attribute_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.attributes_of_places
+    ADD CONSTRAINT attributes_of_places_attribute_id_fkey FOREIGN KEY (attribute_id) REFERENCES public.attributes(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3231 (class 2606 OID 73954)
+-- Name: attributes_of_places attributes_of_places_place_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.attributes_of_places
+    ADD CONSTRAINT attributes_of_places_place_id_fkey FOREIGN KEY (place_id) REFERENCES public.places(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3228 (class 2606 OID 73885)
 -- Name: locations locations_district_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -257,25 +329,25 @@ ALTER TABLE ONLY public.locations
 
 
 --
--- TOC entry 3214 (class 2606 OID 73890)
+-- TOC entry 3229 (class 2606 OID 73964)
 -- Name: locations locations_place_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.locations
-    ADD CONSTRAINT locations_place_id_fkey FOREIGN KEY (place_id) REFERENCES public.places(id);
+    ADD CONSTRAINT locations_place_id_fkey FOREIGN KEY (place_id) REFERENCES public.places(id) ON DELETE CASCADE;
 
 
 --
--- TOC entry 3212 (class 2606 OID 73895)
+-- TOC entry 3227 (class 2606 OID 73969)
 -- Name: opening_hours opening_hours_place_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.opening_hours
-    ADD CONSTRAINT opening_hours_place_id_fkey FOREIGN KEY (place_id) REFERENCES public.places(id);
+    ADD CONSTRAINT opening_hours_place_id_fkey FOREIGN KEY (place_id) REFERENCES public.places(id) ON DELETE CASCADE;
 
 
 --
--- TOC entry 3210 (class 2606 OID 73930)
+-- TOC entry 3225 (class 2606 OID 73930)
 -- Name: places places_type_of_place_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -284,7 +356,7 @@ ALTER TABLE ONLY public.places
 
 
 --
--- TOC entry 3211 (class 2606 OID 73935)
+-- TOC entry 3226 (class 2606 OID 73935)
 -- Name: places places_type_of_recreation_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -292,7 +364,7 @@ ALTER TABLE ONLY public.places
     ADD CONSTRAINT places_type_of_recreation_fkey FOREIGN KEY (type_of_recreation) REFERENCES public.types_of_recreation(id);
 
 
--- Completed on 2026-10-01 17:50:36
+-- Completed on 2026-10-19 12:45:07
 
 --
 -- PostgreSQL database dump complete
