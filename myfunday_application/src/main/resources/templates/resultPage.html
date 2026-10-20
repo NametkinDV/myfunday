@@ -23,20 +23,11 @@
 						<img src="img/Switzerland.jpg" class="d-block w-100" alt='Парк "Швейцария"'>
 
 						<div class="container places my-5">
-							<div class="card">
+							<div class="card" th:each="place : ${places}">
 								<img src="..." class="card-img-top" alt="Место 1">
 								<div class="card-body d-flex flex-column">
-									<h5 class="card-title">Место 1</h5>
-									<p class="card-text" text style = "color: black">Описание места 1</p>
-									<a href="#" class="btn btn-primary mt-auto">Подробнее</a>
-								</div>
-							</div>
-
-							<div class="card">
-								<img src="..." class="card-img-top" alt="Место 2">
-								<div class="card-body d-flex flex-column">
-									<h5 class="card-title">Место 2</h5>
-									<p class="card-text" text style = "color: black">Описание места 2</p>
+									<h5 class="card-title" th:text="${place.name}">Место 1</h5>
+									<p class="card-text" text style = "color: black" th:text="${place.description}">Описание места 1</p>
 									<a href="#" class="btn btn-primary mt-auto">Подробнее</a>
 								</div>
 							</div>

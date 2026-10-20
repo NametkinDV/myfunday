@@ -22,7 +22,7 @@ public class ResultPageController{
 		FormOfOrder formOfOrder = (FormOfOrder) model.getAttribute("redirectFormOfOrder");
 		if (formOfOrder == null) formOfOrder = new FormOfOrder();
 		
-		List<Place> places = placeRepository.findPlaces(formOfOrder.getDistrict());
+		List<Place> places = placeRepository.findPlaces(formOfOrder.getOld(), formOfOrder.getTypeOfVacation(), formOfOrder.getDistrict(), formOfOrder.getBudget(), formOfOrder.getWish(), formOfOrder.getEventStartTime(), formOfOrder.getEventEndTime(), formOfOrder.getDayOfTheWeek());
 		
 		model.addAttribute("places", places);
 		return "resultPage";

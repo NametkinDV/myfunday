@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class Place{
 	private final String name;
+	private final String description;
+	private final String communication;
 	private final String district;
 	private final String latitude;
 	private final String longitude;
