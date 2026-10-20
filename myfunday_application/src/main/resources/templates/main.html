@@ -12,18 +12,18 @@
     <body>
         <h1>MyFunDay</h1>
 
-        <form action="/" method="POST">
+        <form action="/" th:object="${formOfOrder}" method="POST">
             <div class = "container">
                 <div class = "col-lg-9 mx-auto">
                     <label for="age">Возраст: </label> 
-                    <select name="age">
+                    <select th:field="*{old}">
                         <option value= "any">Любой</option>
                         <option value= "minor">Несовершеннолетний</option>
                         <option value= "adult">Совершеннолетний</option>
                     </select>
 
                     <label for="type">Тип отдыха: </label> 
-                    <select name="type">
+                    <select th:field="*{typeOfVacation}">
                         <option value= "any">Любой</option>
                         <option value= "active">Активный</option>
                         <option value= "passive">Спокойный</option>
@@ -31,7 +31,7 @@
 
                     <!-- по районам или указать местоположение на карте -->
                     <label for="region">Район: </label> 
-                    <select name="region">
+                    <select th:field="*{district}">
                         <option value= "any">Любой</option>
                         <option value= "Sovetsky">Советский</option>
                         <option value= "Nizhegorodsky">Нижегородский</option>
@@ -43,52 +43,40 @@
                         <option value= "Leninsky">Ленинский</option>
                     </select>
 
-                    <label for="region">День недели: </label> 
-                    <select name="weekday">
-                        <option value= "any">Любой</option>
-                        <option value= "Mon">Понедельник</option>
-                        <option value= "Tue">Вторник</option>
-                        <option value= "Wen">Среда</option>
-                        <option value= "Thu">Четверг</option>
-                        <option value= "Fri">Пятница</option>
-                        <option value= "Sat">Суббота</option>
-                        <option value= "Sun">Воскресенье</option>
-                    </select>
-
                     <div>
                         <label for="budget" class="form-label">Средний бюджет: </label>
                         <!-- покороче -->
-                        <input type="range" class="form-range" min="0" max="5000" value="0" step = "500" name = "budget" id="budgetIn">
+                        <input type="range" th:field="*{budget}" class="form-range" min="0" max="5000" step = "500"  id="budgetIn">
                         <output for="budget" id="budgetOut" aria-hidden="true"></output>
                         <script>
                         
                         const rangeInput = document.getElementById('budgetIn');
                         const rangeOutput = document.getElementById('budgetOut');
-
-                        rangeOutput.textContent = rangeInput.value;
-
-                        rangeInput.addEventListener('input', function() {
-                            rangeOutput.textContent = this.value;
+						
+						rangeOutput.textContent = rangeInput.value || 0;
+                        
+						rangeInput.addEventListener('input', function() {
+							rangeOutput.textContent = rangeInput.value || 0;
                         });
                         </script>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="target" id="default" checked>
+                        <input class="form-check-input" type="radio" th:field="*{wish}" value="default" id="default">
                         <label class="form-check-label" for="default">
                             Обычная прогулка
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="target" id="kids">
+                        <input class="form-check-input" type="radio" th:field="*{wish}" value="kids" id="kids">
                         <label class="form-check-label" for="kids">
                             Для детей
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="target" id="date">
+                        <input class="form-check-input" type="radio" th:field="*{wish}" value="date" id="date">
                         <label class="form-check-label" for="date">
                             Свидание
                         </label>
@@ -97,7 +85,7 @@
                     <div>
                         <p>Свободное время: </p>
                         <label for="time_from">От: </label> 
-                        <select name="time_from">
+                        <select th:field="*{eventStartTime}">
                             <option value= "any">Без ограничений</option>
                             <option value= "8am">8:00</option>
                             <option value= "9am">9:00</option>
@@ -118,7 +106,7 @@
                         </select>
 
                         <label for="time_to">До: </label> 
-                        <select name="time_to">
+                        <select th:field="*{eventEndTime}">
                             <option value= "any">Без ограничений</option>
                             <option value= "8am">8:00</option>
                             <option value= "9am">9:00</option>
@@ -138,6 +126,17 @@
                             <option value= "11pm">23:00</option>
                         </select>
 
+						<label for="region">День недели: </label> 
+						  <select th:field="*{dayOfTheWeek}">
+				           <option value= "any">Любой</option>
+	                       <option value= "Mon">Понедельник</option>
+						   <option value= "Tue">Вторник</option>
+						   <option value= "Wen">Среда</option>
+						   <option value= "Thu">Четверг</option>
+						   <option value= "Fri">Пятница</option>
+						   <option value= "Sat">Суббота</option>
+						   <option value= "Sun">Воскресенье</option>
+			               </select>
                         <div>
                             <button type="submit" class="btn btn-primary" style = "margin-top: 20px">Применить</button>
                         </div>

@@ -5,9 +5,10 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/dmitry
     username: dmitry
-    password: ""
+    password: "xxx"
     driver-class-name: org.postgresql.Driver
 
   sql:
     init:
-      mode: never
+      mode: always
+      continue-on-error: true
