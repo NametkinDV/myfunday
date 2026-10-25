@@ -1,8 +1,4 @@
-body{
-    background-image: linear-gradient(to bottom, #ae0bf6, #9e0ae2, #8e09ce, #7f08bb, #7006a8);
-}
-
-body.main_page {
+body {
     background-image: url("../static/img/NizhnyNovgorod.jpeg");
     background-size: cover;
     background-attachment: fixed;
@@ -14,7 +10,7 @@ h1{
 }
 
 h2 {
-    color:white;
+    color:black;
     text-align: center;
     margin-top: 20px;
 }
@@ -31,14 +27,26 @@ a {
 label {
     color: black;
     margin-right: 15px;
+    margin-left: 15px;
 }
 
 #budgetOut {
     color: black;
+    padding: 0;
 }
 
 div {
     margin-top: 10px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aboutUs {
+    margin: 20px;
 }
 
 .form-range {
@@ -51,8 +59,10 @@ div {
     width: 100%;
 }
 
-.card.h-100 {
+.card {
     width: 23rem;
+    background-color: rgb(205, 247, 171);
+    margin: 20px;
 }
 
 .carousel-item img.d-block.w-100 {
@@ -65,6 +75,8 @@ div {
     width: 900px; 
     gap: 20px;
     border-radius: 30px;
+    font-size: 13pt;
+    font-weight: bold;
 }
 
 .container.filters div {
@@ -89,11 +101,13 @@ div {
     width: 100%;
 }
 
-.container.popular_places {
+.popular_places {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
 }
 
 .container.popular_places .card-body {
@@ -103,18 +117,24 @@ div {
     justify-content: space-around;
 }
 
-.container.routes, places {
+.routes, places {
     width: 50%;
     height: 100%;
 }
 
-.container.places .card {
+.routes {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.places .card {
     width: auto;
     height: 70vh;
     margin-top: 50px;
 }
 
-.container.places .card-img-top {
+.places .card-img-top {
     height: 45vh;
 }
 
@@ -139,19 +159,22 @@ div {
     margin-bottom: 0;
 }
 
-.container.details {
+.details {
     margin: 0;
     width: 100%;
-    padding: 0;
-}
-
-.container.details img {
-    width: 100%;
-    height: 80vh;
-}
-
-.container.details p {
-    color: white;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    color: black;
     font-size: 16pt;
     margin-top: 25px;
+}
+
+.details a {
+    color: black;
+}
+
+.details img {
+    width: 100%;
+    height: 80vh;
 }
