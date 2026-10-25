@@ -6,61 +6,117 @@
             rel="stylesheet" 
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
             crossorigin="anonymous">
-        <link rel = "stylesheet" type = "text/css" href = "styles.css">
+        <link rel = "stylesheet" type = "text/css" href = "../static/styles.css">
     </head>
 
-    <body>
+    <body class="main_page">
         <h1>MyFunDay</h1>
 
         <form action="/" th:object="${formOfOrder}" method="POST">
-            <div class = "container">
-                <div class = "col-lg-9 mx-auto">
-                    <label for="age">Возраст: </label> 
-                    <select th:field="*{old}">
-                        <option value= "any">Любой</option>
-                        <option value= "minor">Несовершеннолетний</option>
-                        <option value= "adult">Совершеннолетний</option>
-                    </select>
-
-                    <label for="type">Тип отдыха: </label> 
-                    <select th:field="*{typeOfVacation}">
-                        <option value= "any">Любой</option>
-                        <option value= "active">Активный</option>
-                        <option value= "passive">Спокойный</option>
-                    </select>
-
-                    <!-- по районам или указать местоположение на карте -->
-                    <label for="region">Район: </label> 
-                    <select th:field="*{district}">
-                        <option value= "any">Любой</option>
-                        <option value= "Sovetsky">Советский</option>
-                        <option value= "Nizhegorodsky">Нижегородский</option>
-                        <option value= "Prioksky">Приокский</option>
-                        <option value= "Kanavinsky">Канавинский</option>
-                        <option value= "Avtozavodsky">Автозаводский</option>
-                        <option value= "Moskovsky">Московский</option>
-                        <option value= "Sormovsky">Сормовский</option>
-                        <option value= "Leninsky">Ленинский</option>
-                    </select>
-
+            <div class = "container filters">
+                <div>
                     <div>
-                        <label for="budget" class="form-label">Средний бюджет: </label>
-                        <!-- покороче -->
-                        <input type="range" th:field="*{budget}" class="form-range" min="0" max="5000" step = "500"  id="budgetIn">
-                        <output for="budget" id="budgetOut" aria-hidden="true"></output>
-                        <script>
-                        
-                        const rangeInput = document.getElementById('budgetIn');
-                        const rangeOutput = document.getElementById('budgetOut');
-						
-						rangeOutput.textContent = rangeInput.value || 0;
-                        
-						rangeInput.addEventListener('input', function() {
-							rangeOutput.textContent = rangeInput.value || 0;
-                        });
-                        </script>
+                        <label for="age">Возраст: </label> 
+                        <select th:field="*{old}">
+                            <option value= "any">Любой</option>
+                            <option value= "minor">Несовершеннолетний</option>
+                            <option value= "adult">Совершеннолетний</option>
+                        </select>
                     </div>
 
+                    <div>
+                        <label for="type">Тип отдыха: </label> 
+                        <select th:field="*{typeOfVacation}">
+                            <option value= "any">Любой</option>
+                            <option value= "active">Активный</option>
+                            <option value= "passive">Спокойный</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="region">Район: </label> 
+                        <select th:field="*{district}">
+                            <option value= "any">Любой</option>
+                            <option value= "Sovetsky">Советский</option>
+                            <option value= "Nizhegorodsky">Нижегородский</option>
+                            <option value= "Prioksky">Приокский</option>
+                            <option value= "Kanavinsky">Канавинский</option>
+                            <option value= "Avtozavodsky">Автозаводский</option>
+                            <option value= "Moskovsky">Московский</option>
+                            <option value= "Sormovsky">Сормовский</option>
+                            <option value= "Leninsky">Ленинский</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="free_time">
+                    <p style="align-self: flex-start;">Свободное время:</p>
+                    <div class="free_time_controlers">
+                        <div>
+                            <label for="weekday">День недели: </label> 
+                            <select th:field="*{dayOfTheWeek}">
+                                <option value= "any">Любой</option>
+                                <option value= "Mon">Понедельник</option>
+                                <option value= "Tue">Вторник</option>
+                                <option value= "Wen">Среда</option>
+                                <option value= "Thu">Четверг</option>
+                                <option value= "Fri">Пятница</option>
+                                <option value= "Sat">Суббота</option>
+                                <option value= "Sun">Воскресенье</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="time_from">От: </label> 
+                            <select th:field="*{eventStartTime}">
+                                <option value= "any">Без ограничений</option>
+                                <option value= "8am">8:00</option>
+                                <option value= "9am">9:00</option>
+                                <option value= "10am">10:00</option>
+                                <option value= "11am">11:00</option>
+                                <option value= "12pm">12:00</option>
+                                <option value= "1pm">13:00</option>
+                                <option value= "2pm">14:00</option>
+                                <option value= "3pm">15:00</option>
+                                <option value= "4pm">16:00</option>
+                                <option value= "5pm">17:00</option>
+                                <option value= "6pm">18:00</option>
+                                <option value= "7pm">19:00</option>
+                                <option value= "8pm">20:00</option>
+                                <option value= "9pm">21:00</option>
+                                <option value= "10pm">22:00</option>
+                                <option value= "11pm">23:00</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="time_to">До: </label> 
+                            <select th:field="*{eventEndTime}">
+                                <option value= "any">Без ограничений</option>
+                                <option value= "8am">8:00</option>
+                                <option value= "9am">9:00</option>
+                                <option value= "10am">10:00</option>
+                                <option value= "11am">11:00</option>
+                                <option value= "12pm">12:00</option>
+                                <option value= "1pm">13:00</option>
+                                <option value= "2pm">14:00</option>
+                                <option value= "3pm">15:00</option>
+                                <option value= "4pm">16:00</option>
+                                <option value= "5pm">17:00</option>
+                                <option value= "6pm">18:00</option>
+                                <option value= "7pm">19:00</option>
+                                <option value= "8pm">20:00</option>
+                                <option value= "9pm">21:00</option>
+                                <option value= "10pm">22:00</option>
+                                <option value= "11pm">23:00</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                <div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" th:field="*{wish}" value="default" id="default">
                         <label class="form-check-label" for="default">
@@ -81,104 +137,57 @@
                             Свидание
                         </label>
                     </div>
+                </div>
+                
+                <div class="row" style="margin: 0;">
+                    <!-- по центру: text-align: center; -->
+                    <label for="budget" class="form-label" style="padding: 0;">Средний бюджет: </label> 
+                    <input type="range" th:field="*{budget}" class="form-range" min="0" max="5000" step = "500"  id="budgetIn">
+                    <output for="budget" id="budgetOut" aria-hidden="true"></output>
+                    <script>
+                    
+                    const rangeInput = document.getElementById('budgetIn');
+                    const rangeOutput = document.getElementById('budgetOut');
+                    
+                    rangeOutput.textContent = rangeInput.value || 0;
+                    
+                    rangeInput.addEventListener('input', function() {
+                        rangeOutput.textContent = rangeInput.value || 0;
+                    });
+                    </script>
+                </div>
 
-                    <div>
-                        <p>Свободное время: </p>
-                        <label for="time_from">От: </label> 
-                        <select th:field="*{eventStartTime}">
-                            <option value= "any">Без ограничений</option>
-                            <option value= "8am">8:00</option>
-                            <option value= "9am">9:00</option>
-                            <option value= "10am">10:00</option>
-                            <option value= "11am">11:00</option>
-                            <option value= "12pm">12:00</option>
-                            <option value= "1pm">13:00</option>
-                            <option value= "2pm">14:00</option>
-                            <option value= "3pm">15:00</option>
-                            <option value= "4pm">16:00</option>
-                            <option value= "5pm">17:00</option>
-                            <option value= "6pm">18:00</option>
-                            <option value= "7pm">19:00</option>
-                            <option value= "8pm">20:00</option>
-                            <option value= "9pm">21:00</option>
-                            <option value= "10pm">22:00</option>
-                            <option value= "11pm">23:00</option>
-                        </select>
-
-                        <label for="time_to">До: </label> 
-                        <select th:field="*{eventEndTime}">
-                            <option value= "any">Без ограничений</option>
-                            <option value= "8am">8:00</option>
-                            <option value= "9am">9:00</option>
-                            <option value= "10am">10:00</option>
-                            <option value= "11am">11:00</option>
-                            <option value= "12pm">12:00</option>
-                            <option value= "1pm">13:00</option>
-                            <option value= "2pm">14:00</option>
-                            <option value= "3pm">15:00</option>
-                            <option value= "4pm">16:00</option>
-                            <option value= "5pm">17:00</option>
-                            <option value= "6pm">18:00</option>
-                            <option value= "7pm">19:00</option>
-                            <option value= "8pm">20:00</option>
-                            <option value= "9pm">21:00</option>
-                            <option value= "10pm">22:00</option>
-                            <option value= "11pm">23:00</option>
-                        </select>
-
-						<label for="region">День недели: </label> 
-						  <select th:field="*{dayOfTheWeek}">
-				           <option value= "any">Любой</option>
-	                       <option value= "Mon">Понедельник</option>
-						   <option value= "Tue">Вторник</option>
-						   <option value= "Wen">Среда</option>
-						   <option value= "Thu">Четверг</option>
-						   <option value= "Fri">Пятница</option>
-						   <option value= "Sat">Суббота</option>
-						   <option value= "Sun">Воскресенье</option>
-			               </select>
-                        <div>
-                            <button type="submit" class="btn btn-primary" style = "margin-top: 20px">Применить</button>
-                        </div>
-                    </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Применить</button>
                 </div>
             </div>
         </form>
-        <!-- для детей, свидание, тип отдыха (актив, пассив), свободное время (промежуток), район, пешком/на транспорте -->
 
-        <div class="container my-4">
-            <div class="row">
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="img/Switzerland.jpg" class="card-img-top" alt='Парк "Швейцария"'>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Парк "Швейцария"</h5>
-                            <p class="card-text" text style = "color: black">Крупный парк на высоком берегу Оки в Нижнем Новгороде. Одно из самых популярных мест отдыха горожан и туристов.</p>
-                            <a href="detailsPage.html" target="_blank" class="btn btn-primary mt-auto">Подробнее</a>
-                        </div>
-                    </div>
+        <div class="container popular_places">
+            <div class="card h-100">
+                <img src="../static/img/Switzerland.jpg" class="card-img-top" alt='Парк "Швейцария"'>
+                <div class="card-body">
+                    <h5 class="card-title">Парк "Швейцария"</h5>
+                    <p class="card-text" text style = "color: black">Крупный парк на высоком берегу Оки в Нижнем Новгороде. Одно из самых популярных мест отдыха горожан и туристов.</p>
+                    <a href="detailsPage.html" target="_blank" class="btn btn-primary">Подробнее</a>
                 </div>
+            </div>
 
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="img/fuku_ramen.jpg" class="card-img-top" alt='Фуку Рамен'>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Ресторан "Фуку Рамен"</h5>
-                            <p class="card-text" text style = "color: black">Кафе «Фуку Рамен» специализируется на блюдах азиатской кухни, особенно на рамене.</p>
-                            <a href="#" class="btn btn-primary mt-auto">Подробнее</a>
-                        </div>
-                    </div>
+            <div class="card h-100">
+                <img src="../static/img/fuku_ramen.jpg" class="card-img-top" alt='Фуку Рамен'>
+                <div class="card-body">
+                    <h5 class="card-title">Ресторан "Фуку Рамен"</h5>
+                    <p class="card-text" text style = "color: black">Кафе «Фуку Рамен» специализируется на блюдах азиатской кухни, особенно на рамене.</p>
+                    <a href="#" class="btn btn-primary">Подробнее</a>
                 </div>
+            </div>
 
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="img/karting.jpg" class="card-img-top" alt='Olymp Karting'>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Olymp Karting</h5>
-                            <p class="card-text" text style = "color: black">В картинг-клубе Olymp Karting можно не только покататься на картах, но и поиграть в аэрохоккей, а также воспользоваться игровыми приставками Xbox.</p>
-                            <a href="#" class="btn btn-primary mt-auto">Подробнее</a>
-                        </div>
-                    </div>
+            <div class="card h-100">
+                <img src="../static/img/karting.jpg" class="card-img-top" alt='Olymp Karting'>
+                <div class="card-body">
+                    <h5 class="card-title">Olymp Karting</h5>
+                    <p class="card-text" text style = "color: black">В картинг-клубе Olymp Karting можно не только покататься на картах, но и поиграть в аэрохоккей, а также воспользоваться игровыми приставками Xbox.</p>
+                    <a href="#" class="btn btn-primary ">Подробнее</a>
                 </div>
             </div>
         </div>
