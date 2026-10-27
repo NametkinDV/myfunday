@@ -5,13 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@RequestMapping("/")
 @Controller
 public class MainPageController{
-	@GetMapping("/mainPage")
+	@GetMapping("/")
 	public String mainPage(Model model) {
 		model.addAttribute("formOfOrder", new FormOfOrder());
 		return "main";
@@ -20,6 +18,6 @@ public class MainPageController{
 	@PostMapping
 	public String getMainPageForm(@ModelAttribute FormOfOrder formOfOrder, RedirectAttributes redirectFormOfOrder) {
 		redirectFormOfOrder.addFlashAttribute("redirectFormOfOrder", formOfOrder);
-		return "redirect:/resultPage";
+		return "redirect:/result";
 	}
 }

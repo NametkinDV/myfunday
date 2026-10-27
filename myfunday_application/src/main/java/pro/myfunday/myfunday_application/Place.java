@@ -8,9 +8,10 @@ public class Place{
 	private final String description;
 	private final String communication;
 	private final String district;
-	private final String latitude;
-	private final String longitude;
+	private final Double latitude;
+	private final Double longitude;
 	private final String address;
 	private final String opensAt;
 	private final String closesAt;
+	private final String img;
 }
