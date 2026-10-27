@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3
 -- Dumped by pg_dump version 15.3
 
--- Started on 2026-10-19 19:46:54
+-- Started on 2026-10-27 12:43:01
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -364,7 +364,7 @@ ALTER TABLE ONLY public.places
     ADD CONSTRAINT places_type_of_recreation_fkey FOREIGN KEY (type_of_recreation) REFERENCES public.types_of_recreation(id);
 
 
--- Completed on 2026-10-19 19:46:54
+-- Completed on 2026-10-27 12:43:01
 
 --
 -- PostgreSQL database dump complete
