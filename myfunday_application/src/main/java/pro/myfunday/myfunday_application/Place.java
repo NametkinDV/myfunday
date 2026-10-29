@@ -6,6 +6,7 @@ import lombok.Data;
 public class Place{
 	private final String name;
 	private final String description;
+	private final String short_description;
 	private final String communication;
 	private final String district;
 	private final Double latitude;
