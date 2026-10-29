@@ -45,7 +45,8 @@ public class ResultPageController{
 	}
 	
 	public int mainPlacesCounting(FormOfOrder formOfOrder) { // Подсчёт необходимого количества мест для вывода
-		return timeCounting(formOfOrder) * 3;
+		int res = timeCounting(formOfOrder) * 3;
+		return res <= 15 ? res : 15;
 	}
 	
 	public List<List<Place>> splitRouts(List<Place> places){ // Разделение мест на 3 маршрута
